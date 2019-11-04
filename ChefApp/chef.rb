@@ -20,15 +20,10 @@ class Chef
 
       def parse_input(input) 
         if input == 'a'
-          puts "input the name of your new dish \n"
-          name_of_new_dish = gets.chomp
           add(name_of_new_dish)
         elsif input == 'r'
-          puts "input the name of the dish you wish to remove \n"
-          name_of_dish_to_remove = gets.chomp
           remove(name_of_dish_to_remove)
         elsif input == 'd'
-          puts "list of dishes displayed below: \n"
           current_dishes_list()
         elsif input == 'q'
           return 
@@ -37,16 +32,21 @@ class Chef
       end
 
       def add(dish_name)
+        puts "input the name of your new dish \n"
+        name_of_new_dish = gets.chomp
         @current_dishes.push(Dish.new(dish_name))
         puts "dish added: " + dish_name
       end
 
       def remove(dish_name)
+        puts "input the name of the dish you wish to remove \n"
+        name_of_dish_to_remove = gets.chomp
         @current_dishes.reject! { |dish| dish.to_s == dish_name }
         puts "dish removed: " + dish_name 
       end
 
       def current_dishes_list
+        puts "list of dishes displayed below: \n"
         @current_dishes.each do |dish| 
           puts dish.name
         end
