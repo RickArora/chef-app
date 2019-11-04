@@ -3,12 +3,13 @@ class Chef
   attr_accessor :current_dishes
       def initialize(dishes=[])
         @current_dishes = dishes
-        @get_input
       end
 
       def get_input()
-        input = puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
+        puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
+        input = ""
         while(input != 'q')
+          input = gets.chomp
           parse_input(input)
         end
       end
@@ -16,11 +17,11 @@ class Chef
       def parse_input(input) 
         if input == 'a'
           p "input the name of your new dish \n"
-          name_of_new_dish = gets
+          name_of_new_dish = gets.chomp
           add(name_of_new_dish)
         elsif input == 'r'
           p "input the name of the dish you wish to remove \n"
-          name_of_dish_to_remove = gets
+          name_of_dish_to_remove = gets.chomp
           remove(name_of_dish_to_remove)
         elsif input == 'd'
           p "list of dishes displayed below: \n"
@@ -30,6 +31,7 @@ class Chef
 
       def add(dish_name)
         @current_dishes.push(dish_name)
+        p "dish added"
       end
 
       def remove(dish_name)
@@ -38,16 +40,11 @@ class Chef
 
       def current_dishes_list
         @current_dishes.each do |dish| 
-          puts dish.name 
+          puts dish.name
         end
       end
 end
 
-poutine = Dish.new("Poutine")
-fish = Dish.new("Fish")
-arr = []
-arr.push(poutine)
-arr.push(fish)
-chef = Chef.new(arr)
-chef.current_dishes_list
 
+chef = Chef.new()
+chef.get_input
