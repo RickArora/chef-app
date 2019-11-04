@@ -1,4 +1,5 @@
 require_relative 'Dish'
+require 'byebug'
 class Chef
   attr_accessor :current_dishes
       def initialize(dishes=[])
@@ -11,37 +12,45 @@ class Chef
         while(input != 'q')
           input = gets.chomp
           parse_input(input)
+          if input != 'q'
+            puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
+          end
         end
       end
 
       def parse_input(input) 
         if input == 'a'
-          p "input the name of your new dish \n"
+          puts "input the name of your new dish \n"
           name_of_new_dish = gets.chomp
           add(name_of_new_dish)
         elsif input == 'r'
-          p "input the name of the dish you wish to remove \n"
+          puts "input the name of the dish you wish to remove \n"
           name_of_dish_to_remove = gets.chomp
           remove(name_of_dish_to_remove)
         elsif input == 'd'
-          p "list of dishes displayed below: \n"
-          @current_dishes_list
+          puts "list of dishes displayed below: \n"
+          current_dishes_list()
+        elsif input == 'q'
+          return 
+        else puts "invalid input please pick a valid option"
         end
       end
 
       def add(dish_name)
-        @current_dishes.push(dish_name)
-        p "dish added"
+        @current_dishes.push(Dish.new(dish_name))
+        puts "dish added: " + dish_name
       end
 
       def remove(dish_name)
-        @current_dishes.delete(dish_name)
+        @current_dishes.reject! { |dish| dish.to_s == dish_name }
+        puts "dish removed: " + dish_name 
       end
 
       def current_dishes_list
         @current_dishes.each do |dish| 
           puts dish.name
         end
+        puts "\n Your list of food is displayed above"
       end
 end
 
