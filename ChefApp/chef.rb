@@ -41,8 +41,12 @@ class Chef
       def remove()
         puts "input the name of the dish you wish to remove \n"
         name_of_dish_to_remove = gets.chomp
-        @current_dishes.reject! { |dish| dish.to_s == name_of_dish_to_remove }
-        puts "dish removed: " + name_of_dish_to_remove
+        result_of_reject = @current_dishes.reject! { |dish| dish.to_s == name_of_dish_to_remove }
+        if result_of_reject.nil?
+          puts "dish did not exist, so no dish removed"
+        else
+          puts "dish removed: " + name_of_dish_to_remove
+        end
       end
 
       def current_dishes_list
