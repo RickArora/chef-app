@@ -34,8 +34,9 @@ class Chef
       def add()
         puts "input the name of your new dish \n"
         dish_to_add = gets.chomp
-        @current_dishes.push(Dish.new(dish_to_add))
-        puts "dish added: " + dish_to_add
+          @current_dishes.push(Dish.new(dish_to_add))
+            puts "dish added: " + dish_to_add
+        end
       end
 
       def remove()
