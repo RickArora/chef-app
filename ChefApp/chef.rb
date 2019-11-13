@@ -6,14 +6,18 @@ class Chef
         @current_dishes = dishes
       end
 
-      def get_input()
+      def display_menu
         puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
+      end
+
+      def get_input()
+        display_menu
         input = ""
         while(input != 'q')
           input = gets.chomp
           parse_input(input)
           if input != 'q'
-            puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
+            display_menu
           end
         end
       end
