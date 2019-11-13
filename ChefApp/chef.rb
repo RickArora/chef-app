@@ -1,4 +1,4 @@
-require_relative 'Dish'
+require_relative 'dish'
 require 'byebug'
 class Chef
   attr_accessor :current_dishes
@@ -10,7 +10,7 @@ class Chef
         puts "Type: \n 'a' to add a dish \n 'r' to remove a dish \n 'd' to display all dishes \n 'q' to quit the program"
       end
 
-      def get_input()
+      def get_input
         display_menu
         input = ""
         while(input != 'q')
@@ -24,18 +24,18 @@ class Chef
 
       def parse_input(input) 
         if input == 'a'
-          add()
+          add
         elsif input == 'r'
-          remove()
+          remove
         elsif input == 'd'
-          current_dishes_list()
+          current_dishes_list
         elsif input == 'q'
           return 
         else puts "invalid input please pick a valid option"
         end
       end
 
-      def add()
+      def add
         puts "input the name of your new dish \n"
         dish_to_add = gets.chomp
           @current_dishes.push(Dish.new(dish_to_add))
@@ -43,7 +43,7 @@ class Chef
         end
       end
 
-      def remove()
+      def remove
         puts "input the name of the dish you wish to remove \n"
         name_of_dish_to_remove = gets.chomp
         array_with_dish_deleted = @current_dishes.reject! { |dish| dish.to_s == name_of_dish_to_remove }
@@ -64,5 +64,5 @@ class Chef
 end
 
 
-chef = Chef.new()
+chef = Chef.new
 chef.get_input
