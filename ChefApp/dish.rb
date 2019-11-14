@@ -1,5 +1,6 @@
-class Dish
+# frozen_string_literal: true
 
+class Dish
   attr_accessor :name
 
   def initialize(name)
@@ -9,5 +10,4 @@ class Dish
   def to_s
     @name
   end
-  
 end
